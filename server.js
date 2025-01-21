@@ -84,7 +84,7 @@ app.post('/claim', isAuthenticated, async (req, res) => {
             params: {
                 api_key: process.env.FAUCETPAY_API_KEY,
                 to: address,
-                amount: 0.001, // Change this to your desired amount
+                amount: 0.000001, // Change this to your desired amount
                 currency: 'BTC', // Change to desired currency
             },
         });
