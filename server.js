@@ -66,23 +66,9 @@ app.get('/claim', isAuthenticated, (req, res) => {
 });
 
 app.post('/claim', isAuthenticated, async (req, res) => {
-    const { address, captchaToken } = req.body;
+    const { address } = req.body;
 
-    // Validate CAPTCHA
-    const captchaResponse = await axios.post(
-        `https://www.google.com/recaptcha/api/siteverify`,
-        null,
-        {
-            params: {
-                secret: process.env.CAPTCHA_SECRET,
-                response: captchaToken,
-            },
-        }
-    );
 
-    if (!captchaResponse.data.success) {
-        return res.render('claim', { message: 'CAPTCHA validation failed.' });
-    }
 
     // Check cooldown
     const lastClaim = req.session.lastClaim || 0;
